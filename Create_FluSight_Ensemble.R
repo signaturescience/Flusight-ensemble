@@ -1,5 +1,13 @@
 #### Developed from:
 #### https://github.com/reichlab/hubEnsembles/blob/main/vignettes/basic-ensemble.Rmd
+#### Developed by: P. Prasad
+
+
+# Packages to Install
+# devtools::install_github("reichlab/zoltr")
+# devtools::install_github("reichlab/covidData")
+# devtools::install_github("reichlab/simplets")
+# devtools::install_github("reichlab/covidHubUtils")
 
 library(covidHubUtils)
 library(hubEnsembles)

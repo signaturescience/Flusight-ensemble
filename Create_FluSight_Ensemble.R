@@ -1,12 +1,17 @@
 #### Developed from:
 #### https://github.com/reichlab/hubEnsembles/blob/main/vignettes/basic-ensemble.Rmd
-
+#devtools::install_github("reichlab/zoltr")
+#devtools::install_github("reichlab/covidData")
+#devtools::install_github("reichlab/simplets")
+#devtools::install_github("reichlab/covidHubUtils")
+#devtools::install_github("reichlab/hubEnsembles")
+#install.packages("installr")
 library(covidHubUtils)
 library(hubEnsembles)
 library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
-userid = "ppf6"
+userid = "rpe5"
 forecast_date = "2022-01-10" # Monday
 sixweeks_before_forecast_date = "2021-11-29" # 6 weeks ago Monday
 

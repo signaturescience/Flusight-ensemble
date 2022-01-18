@@ -89,7 +89,7 @@ truth_data <- load_truth(
 
 #Plot individual team forecasts
 
-all_locations = unique(forecast_data$location)
+all_locations = sort(unique(forecast_data$location))
 starting_location = seq(1, length(all_locations), 3)
 
 pdf(paste0(output_dir, "all-models-", forecast_date, ".pdf"))

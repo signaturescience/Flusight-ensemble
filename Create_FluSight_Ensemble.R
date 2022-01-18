@@ -16,11 +16,11 @@ library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
 userid = "ppf6"
-forecast_date = "2022-01-10" # Monday
-sixweeks_before_forecast_date = "2021-11-29" # 6 weeks ago Monday
+forecast_date = "2022-01-17" # Monday
+sixweeks_before_forecast_date = "2021-12-05" # 6 weeks ago Monday
 
 ensemble_code_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-ensemble")
-flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data")
+flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data-pp") #using my forked repo for this now
 setwd(flusight_path)
 
 output_dir <- paste0(ensemble_code_path, "/", forecast_date, "/")

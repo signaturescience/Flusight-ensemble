@@ -15,7 +15,7 @@ library(hubEnsembles)
 library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
-userid = "rpe5"
+userid = "ppf6"
 forecast_date = "2022-01-10" # Monday
 sixweeks_before_forecast_date = "2021-11-29" # 6 weeks ago Monday
 
@@ -120,7 +120,12 @@ ensemble_forecast <- build_quantile_ensemble(forecast_data,
                                              model_name = "Flusight-ensemble",
                                              location_data = hub_locations)
 
-write.csv(ensemble_forecast, paste0(flusight_path, "/data-forecasts/Flusight-ensemble/",forecast_date, "-Flusight-ensemble.csv"))
+
+ensemble_forecast1 <- ensemble_forecast %>% 
+  mutate(target = paste(horizon, temporal_resolution, "ahead", target_variable, sep = " ")) %>% 
+  select(forecast_date, target, target_end_date, location, type, quantile, value)
+
+write.csv(ensemble_forecast1, paste0(flusight_path, "/data-forecasts/Flusight-ensemble/",forecast_date, "-Flusight-ensemble.csv"), row.names=FALSE)
 
 pdf(paste0(output_dir, "ensemble-", forecast_date, ".pdf"))
 for(i in starting_location){

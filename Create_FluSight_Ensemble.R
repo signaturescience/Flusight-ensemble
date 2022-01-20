@@ -15,12 +15,12 @@ library(hubEnsembles)
 library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
-userid = "rpe5"
-forecast_date = "2022-01-10" # Monday
-sixweeks_before_forecast_date = "2021-11-29" # 6 weeks ago Monday
+userid = "ppf6"
+forecast_date = "2022-01-17" # Monday
+sixweeks_before_forecast_date = "2021-12-05" # 6 weeks ago Monday
 
 ensemble_code_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-ensemble")
-flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data")
+flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data-pp") #using my forked repo for this now
 setwd(flusight_path)
 
 output_dir <- paste0(ensemble_code_path, "/", forecast_date, "/")
@@ -89,7 +89,7 @@ truth_data <- load_truth(
 
 #Plot individual team forecasts
 
-all_locations = unique(forecast_data$location)
+all_locations = sort(unique(forecast_data$location))
 starting_location = seq(1, length(all_locations), 3)
 
 pdf(paste0(output_dir, "all-models-", forecast_date, ".pdf"))
@@ -120,7 +120,12 @@ ensemble_forecast <- build_quantile_ensemble(forecast_data,
                                              model_name = "Flusight-ensemble",
                                              location_data = hub_locations)
 
-write.csv(ensemble_forecast, paste0(flusight_path, "/data-forecasts/Flusight-ensemble/",forecast_date, "-Flusight-ensemble.csv"))
+
+ensemble_forecast1 <- ensemble_forecast %>% 
+  mutate(target = paste(horizon, temporal_resolution, "ahead", target_variable, sep = " ")) %>% 
+  select(forecast_date, target, target_end_date, location, type, quantile, value)
+
+write.csv(ensemble_forecast1, paste0(flusight_path, "/data-forecasts/Flusight-ensemble/",forecast_date, "-Flusight-ensemble.csv"), row.names=FALSE)
 
 pdf(paste0(output_dir, "ensemble-", forecast_date, ".pdf"))
 for(i in starting_location){

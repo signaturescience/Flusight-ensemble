@@ -15,12 +15,12 @@ library(hubEnsembles)
 library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
-userid = "ppf6"
-forecast_date = "2022-01-17" # Monday
-sixweeks_before_forecast_date = "2021-12-05" # 6 weeks ago Monday
+userid = "rpe5"
+forecast_date = "2022-01-24" # Monday
+sixweeks_before_forecast_date = "2021-12-12" # 6 weeks ago Monday
 
 ensemble_code_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-ensemble")
-flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data-pp") #using my forked repo for this now
+flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data") #using my forked repo for this now
 setwd(flusight_path)
 
 output_dir <- paste0(ensemble_code_path, "/", forecast_date, "/")
@@ -37,8 +37,7 @@ if(!file.exists(paste0(output_dir, "models-to-include-in-ensemble-", forecast_da
   all_metadata = paste0(flusight_path, "/data-forecasts/", all_models,
                         "/metadata-", all_models, ".txt") %>%
     lapply(., read.delim)
-  
-  include <- c()
+    include <- c()
   for(i in 1:length(all_models)){
     
     metadata = all_metadata[[i]]

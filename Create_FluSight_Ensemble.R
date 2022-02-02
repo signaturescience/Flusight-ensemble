@@ -15,7 +15,7 @@ library(hubEnsembles)
 library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
-userid = "rpe5"
+userid = "ppf6"
 forecast_date = "2022-01-31" # Monday
 sixweeks_before_forecast_date = "2021-12-24" # 6 weeks ago Monday
 
@@ -32,7 +32,7 @@ if(!dir.exists(output_dir)){
 # Get the models to be included in the ensemble
 if(!file.exists(paste0(output_dir, "models-to-include-in-ensemble-", forecast_date, ".csv"))){
   file_names = list.files(path = paste0(flusight_path, "/data-forecasts"))
-  all_models = file_names[!grepl(paste0("Flusight", collapse = "|"), file_names) &
+  all_models = file_names[!(file_names %in% c("Flusight-baseline", "Flusight-ensemble")) &
                             !grepl(paste0(".md", collapse = "|"), file_names)]
   all_metadata = paste0(flusight_path, "/data-forecasts/", all_models,
                         "/metadata-", all_models, ".txt") %>%

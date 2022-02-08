@@ -15,9 +15,9 @@ library(hubEnsembles)
 library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
-userid = "ppf6"
-forecast_date = "2022-01-31" # Monday
-sixweeks_before_forecast_date = "2021-12-24" # 6 weeks ago Monday
+userid = "rpe5"
+forecast_date = "2022-02-07" # Monday
+sixweeks_before_forecast_date = "2021-12-31" # 6 weeks ago Monday
 
 ensemble_code_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-ensemble")
 flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data") #using my forked repo for this now

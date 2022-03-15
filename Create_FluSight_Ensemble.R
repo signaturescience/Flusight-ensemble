@@ -16,8 +16,8 @@ library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
 userid = "rpe5"
-forecast_date = "2022-03-07" # Monday
-sixweeks_before_forecast_date = "2022-01-28" # 6 weeks ago Monday
+forecast_date = "2022-03-14" # Monday
+sixweeks_before_forecast_date = "2022-02-04" # 6 weeks ago Monday
 
 ensemble_code_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-ensemble")
 flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data") #using my forked repo for this now
@@ -122,7 +122,7 @@ ensemble_forecast <- build_quantile_ensemble(forecast_data,
 
 ensemble_forecast1 <- ensemble_forecast %>% 
   mutate(target = paste(horizon, temporal_resolution, "ahead", target_variable, sep = " ")) %>% 
-  select(forecast_date, target, target_end_date, location, type, quantile, value)
+  dplyr::select(forecast_date, target, target_end_date, location, type, quantile, value)
 
 write.csv(ensemble_forecast1, paste0(flusight_path, "/data-forecasts/Flusight-ensemble/",forecast_date, "-Flusight-ensemble.csv"), row.names=FALSE)
 

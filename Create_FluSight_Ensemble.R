@@ -16,8 +16,8 @@ library(dplyr)
 
 # Set the environment - dates should change each week & check to see if the file paths are correct 
 userid = "rpe5"
-forecast_date = "2022-10-17" # Monday
-sixweeks_before_forecast_date = "2022-09-05" # 6 weeks ago Monday
+forecast_date = "2022-10-24" # Monday
+sixweeks_before_forecast_date = "2022-09-12" # 6 weeks ago Monday
 
 ensemble_code_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-ensemble")
 flusight_path = paste0("C:/Users/",userid,"/Desktop/GitHub/Flusight-forecast-data") #using my forked repo for this now
@@ -99,6 +99,25 @@ for(i in starting_location){
     facet_scales = "free_y",
     facet_ncol = 1,
     facet_nrow = 3,
+    truth_data = truth_data %>% filter(target_end_date > sixweeks_before_forecast_date),
+    truth_source = "HealthData",
+    use_median_as_point = TRUE, 
+    fill_by_model = TRUE, 
+    title = "Weekly Influenza Incident Hospitalizations: observed and forecasted",
+    show_caption = FALSE, 
+    fill_transparency = .3
+  ) 
+}
+dev.off()
+
+pdf(paste0(output_dir, "all-models-full-page-", forecast_date, ".pdf"))
+for(i in starting_location){
+  plot_forecasts(
+    forecast_data = forecast_data %>% filter(location %in% all_locations[i]),
+    facet = .~location,
+    facet_scales = "free_y",
+    facet_ncol = 1,
+    facet_nrow = 1,
     truth_data = truth_data %>% filter(target_end_date > sixweeks_before_forecast_date),
     truth_source = "HealthData",
     use_median_as_point = TRUE, 

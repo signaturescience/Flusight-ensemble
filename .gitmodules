@@ -1,0 +1,3 @@
+[submodule "Flusight-forecast-data"]
+	path = Flusight-forecast-data
+	url = https://github.com/cdcepi/Flusight-forecast-data/
